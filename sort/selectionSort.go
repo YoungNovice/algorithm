@@ -1,10 +1,10 @@
 package sort
 
 // 选择排序
-// 每轮寻找最小值的下标 将最小值交换到最前面 接着处理后边的
 func (data *DataArr) SelectionSort() {
 	len := len(*data)
 
+	// 每轮寻找最小值的下标 将最小值交换到最前面 接着处理后边的
 	for i := 0; i < len-1; i++ {
 		minIndex := i
 
