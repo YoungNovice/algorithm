@@ -29,4 +29,10 @@ func TestDataArr_ShellSort(t *testing.T) {
 	t.Log("ok")
 }
 
+func TestDataArr_MergeSort(t *testing.T) {
+	var s DataArr = []int{4, 5, 100, 3, 20, 40, 50}
+	s.MergeSort()
+	s.Print()
+	t.Log("ok")
+}
 

@@ -10,4 +10,5 @@
 |桶排序|Bucket|n+k|n^2|n|n+k|稳定|
 |计数排序|Counting|n+k|n+k|n+k|n+k|稳定|
 |基数排序|Radix|n*k|n*k|n*k|n+k|稳定|
+|TIM排序|TimSort||||||
 
