@@ -2,7 +2,7 @@ package expresstion
 
 import "testing"
 
-func TestPostfixExpression1(t *testing.T) {
+func TestPostfixEval(t *testing.T) {
 	type args struct {
 		str string
 	}
@@ -16,7 +16,7 @@ func TestPostfixExpression1(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := PostfixExpression(tt.args.str); got != tt.want {
+			if got := PostfixEval(tt.args.str); got != tt.want {
 				t.Errorf("PostfixExpression() = %v, want %v", got, tt.want)
 			}
 		})
