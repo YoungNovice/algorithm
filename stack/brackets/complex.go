@@ -14,10 +14,14 @@ func MatchComplex(str string) bool {
 			top, b := stk.Peek()
 			if !b {
 				return false
-			} else if (item == ')' && top == '(') ||
-				(item == ']' && top == '[') ||
-				(item == '}' && top == '{') {
-				stk.Pop()
+			} else {
+				if (item == ')' && top == '(') ||
+					(item == ']' && top == '[') ||
+					(item == '}' && top == '{') {
+					stk.Pop()
+				} else {
+					return false
+				}
 			}
 		}
 	}

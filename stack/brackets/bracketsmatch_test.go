@@ -5,7 +5,7 @@ import (
 )
 
 func TestMatch(t *testing.T) {
-	b := MatchComplex("(asdf(s)(())()){(){}[nihao]}")
+	b := MatchComplex("(])")
 	if !b {
 		t.Error("not match")
 	} else {
