@@ -47,6 +47,20 @@ func (l *LinkedList) add(index int, e interface{}) {
 	l.size++
 }
 
+func (l *LinkedList) Delete(index int) {
+	l.opCheck()
+	// 增加的判断 和更新删除不一样 增加是可以在最后一个位置加的
+	if index < 0 || index > l.size-1 {
+		panic("valid index")
+	}
+	prev := l.dummyHead
+	for i := 0; i < index; i++ {
+		prev = prev.next
+	}
+	prev.next = prev.next.next
+	l.size--
+}
+
 func (l *LinkedList) AddFirst(e interface{}) {
 	l.add(0, e)
 }

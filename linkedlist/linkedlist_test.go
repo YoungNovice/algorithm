@@ -7,9 +7,11 @@ import (
 
 func TestLinkedList_addFirst(t *testing.T) {
 	var l LinkedList
-	l.addFirst("1")
-	l.addFirst("2")
-	l.addLast("last")
+	l.AddFirst("1")
+	l.AddFirst("2")
+	l.AddLast("last")
 	l.set(1, "haha")
-	fmt.Println(l, l.getFirst(), l.getLast())
+	fmt.Println(l, l.First(), l.Last())
+	l.Delete(0)
+	fmt.Println(l, l.First(), l.Last())
 }
