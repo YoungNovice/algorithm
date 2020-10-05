@@ -1,5 +1,10 @@
 package bst
 
+import (
+	"fmt"
+	"strings"
+)
+
 type Comparable interface {
 	CompareTo(c Comparable) int
 }
@@ -26,9 +31,9 @@ func (b *BST) add(n *node, e Comparable) *node {
 		return &node{e, nil, nil}
 	}
 
-	if e.CompareTo(n.e) < 0 {
+	if n.e.CompareTo(e) > 0 {
 		n.left = b.add(n.left, e)
-	} else if e.CompareTo(n.e) > 0 {
+	} else if n.e.CompareTo(e) < 0 {
 		n.right = b.add(n.right, e)
 	}
 	return n
@@ -45,9 +50,68 @@ func (b *BST) contains(n *node, e Comparable) bool {
 
 	if e.CompareTo(n.e) == 0 {
 		return true
-	} else if e.CompareTo(n.e) < 0 {
+	} else if n.e.CompareTo(e) > 0 {
 		return b.contains(n.left, e)
 	} else {
 		return b.contains(n.right, e)
 	}
 }
+
+// 先序遍历
+func (b *BST) PreOrder(f func(*node)) {
+	b.preOrder(b.root, f)
+}
+
+func (b *BST) preOrder(n *node, f func(*node)) {
+	if n == nil {
+		return
+	}
+	f(n)
+	b.preOrder(n.left, f)
+	b.preOrder(n.right, f)
+}
+
+// 中序遍历
+func (b *BST) InOrder(f func(*node)) {
+	b.inOrder(b.root, f)
+}
+
+func (b *BST) inOrder(n *node, f func(*node)) {
+	if n == nil {
+		return
+	}
+	b.inOrder(n.left, f)
+	f(n)
+	b.inOrder(n.right, f)
+}
+
+// 后序遍历
+func (b *BST) PostOrder(f func(*node)) {
+	b.postOrder(b.root, f)
+}
+
+func (b *BST) postOrder(n *node, f func(*node)) {
+	if n == nil {
+		return
+	}
+	b.postOrder(n.left, f)
+	b.postOrder(n.right, f)
+	f(n)
+}
+
+func (b BST) String() string {
+	var sb strings.Builder
+	generateBSTString(b.root, 0, &sb)
+	return sb.String()
+}
+
+func generateBSTString(n *node, depth int, sb *strings.Builder) {
+	if n == nil {
+		sb.WriteString(strings.Repeat("--", depth) + "null\n")
+		return
+	}
+	sb.WriteString(fmt.Sprintf("%s%s%s", strings.Repeat("--", depth), n.e, "\n"))
+	generateBSTString(n.left, depth+1, sb)
+	generateBSTString(n.right, depth+1, sb)
+}
+
