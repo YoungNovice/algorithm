@@ -57,47 +57,25 @@ func (b *BST) contains(n *node, e Comparable) bool {
 	}
 }
 
-// 先序遍历
-func (b *BST) PreOrder(f func(*node)) {
-	b.preOrder(b.root, f)
-}
-
-func (b *BST) preOrder(n *node, f func(*node)) {
-	if n == nil {
-		return
+// 层次遍历 利用队列
+func (b *BST) LevelOrder(f func(*node)) {
+	var q []*node
+	q = append(q, b.root)
+	for len(q) > 0 {
+		// dequeue
+		cur := q[0]
+		q = q[1:]
+		f(cur)
+		// enqueue
+		if cur.left != nil {
+			q = append(q, cur.left)
+		}
+		if cur.right != nil {
+			q = append(q, cur.right)
+		}
 	}
-	f(n)
-	b.preOrder(n.left, f)
-	b.preOrder(n.right, f)
 }
 
-// 中序遍历
-func (b *BST) InOrder(f func(*node)) {
-	b.inOrder(b.root, f)
-}
-
-func (b *BST) inOrder(n *node, f func(*node)) {
-	if n == nil {
-		return
-	}
-	b.inOrder(n.left, f)
-	f(n)
-	b.inOrder(n.right, f)
-}
-
-// 后序遍历
-func (b *BST) PostOrder(f func(*node)) {
-	b.postOrder(b.root, f)
-}
-
-func (b *BST) postOrder(n *node, f func(*node)) {
-	if n == nil {
-		return
-	}
-	b.postOrder(n.left, f)
-	b.postOrder(n.right, f)
-	f(n)
-}
 
 func (b BST) String() string {
 	var sb strings.Builder
