@@ -79,7 +79,7 @@ func (b *BST) LevelOrder(f func(*node)) {
 // 删除最小值
 func (b *BST) RemoveMin() *node {
 	e := b.Min()
-	b.removeMin(b.root)
+	b.root = b.removeMin(b.root)
 	return e
 }
 
@@ -111,7 +111,7 @@ func (b *BST) min(n *node) *node {
 // 删除最大值
 func (b *BST) RemoveMax() *node {
 	e := b.Max()
-	b.removeMax(b.root)
+	b.root = b.removeMax(b.root)
 	return e
 }
 
