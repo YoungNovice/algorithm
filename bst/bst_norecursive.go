@@ -73,14 +73,13 @@ func (b *BST) InOrderNR1(f func(*node)) {
 	}
 }
 
-
 // 后续遍历比较麻烦 需要一个结点需要入两次栈
 func (b *BST) PostOrderNR1(f func(*node)) {
 	if b.root == nil {
 		return
 	}
 	type PostNode struct {
-		n *node
+		n    *node
 		flag int
 	}
 	var s []*PostNode
@@ -93,7 +92,7 @@ func (b *BST) PostOrderNR1(f func(*node)) {
 			cur = cur.left
 		} else {
 			// pop
-			top:= s[len(s)-1]
+			top := s[len(s)-1]
 			s = s[:len(s)-1]
 			cur = top.n
 			if top.flag == 1 {
@@ -107,6 +106,42 @@ func (b *BST) PostOrderNR1(f func(*node)) {
 				f(cur)
 				cur = nil
 			}
+		}
+	}
+}
+
+// 后续遍历比较麻烦 需要一个结点需要入两次栈
+func (b *BST) PostOrderNR2(f func(*node)) {
+	if b.root == nil {
+		return
+	}
+	type PostNode struct {
+		n    *node
+		flag int
+	}
+	var s []*PostNode
+	cur := b.root
+
+	for len(s) > 0 || cur != nil {
+		for cur != nil {
+			s = append(s, &PostNode{cur, 1})
+			cur = cur.left
+		}
+		// pop
+		top := s[len(s)-1]
+		s = s[:len(s)-1]
+		cur = top.n
+
+		if top.flag == 1 {
+			// 第一次push
+			top.flag = 2
+			// 第二次push
+			s = append(s, top)
+			// 转向右子树
+			cur = cur.right
+		} else {
+			f(cur)
+			cur = nil
 		}
 	}
 }
