@@ -145,3 +145,27 @@ func (b *BST) PostOrderNR2(f func(*node)) {
 		}
 	}
 }
+
+// 找最小值
+func (b *BST) MinNR() *node {
+	if b.size == 0 {
+		panic("BST is empty!")
+	}
+	cur := b.root
+	for cur.left != nil {
+		cur = cur.left
+	}
+	return cur
+}
+
+// 找最大值
+func (b *BST) MaxNR() *node {
+	if b.size == 0 {
+		panic("BST is empty!")
+	}
+	cur := b.root
+	for cur.right != nil {
+		cur = cur.right
+	}
+	return cur
+}

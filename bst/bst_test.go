@@ -103,5 +103,15 @@ func TestBST_LevelOrder(t *testing.T) {
 	fmt.Println()
 }
 
+func TestBST_Min(t *testing.T) {
+	bst := getData()
+	bst.InOrderNR1(func(n *node) {
+		fmt.Print(n.e, " ")
+	})
+	fmt.Println()
+	fmt.Println(bst.Min().e, bst.MinNR().e)
+	fmt.Println(bst.Max().e, bst.MaxNR().e)
+}
+
 
 

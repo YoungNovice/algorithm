@@ -76,6 +76,33 @@ func (b *BST) LevelOrder(f func(*node)) {
 	}
 }
 
+func (b *BST) Min() *node {
+	if b.size == 0 {
+		panic("BST is empty!")
+	}
+	return b.min(b.root)
+}
+
+func (b *BST) min(n *node) *node {
+	if n.left == nil {
+		return n
+	}
+	return b.min(n.left)
+}
+
+func (b *BST) Max() *node {
+	if b.size == 0 {
+		panic("BST is empty!")
+	}
+	return b.max(b.root)
+}
+
+func (b *BST) max(n *node) *node {
+	if n.right == nil {
+		return n
+	}
+	return b.max(n.right)
+}
 
 func (b BST) String() string {
 	var sb strings.Builder
