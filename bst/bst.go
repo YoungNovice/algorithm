@@ -76,6 +76,24 @@ func (b *BST) LevelOrder(f func(*node)) {
 	}
 }
 
+// 删除最小值
+func (b *BST) RemoveMin() *node {
+	e := b.Min()
+	b.removeMin(b.root)
+	return e
+}
+
+func (b *BST) removeMin(n *node) *node {
+	if n.left == nil {
+		right := n.right
+		n.right = nil
+		b.size--
+		return right
+	}
+	n.left = b.removeMin(n.left)
+	return n
+}
+
 func (b *BST) Min() *node {
 	if b.size == 0 {
 		panic("BST is empty!")
@@ -90,6 +108,25 @@ func (b *BST) min(n *node) *node {
 	return b.min(n.left)
 }
 
+// 删除最大值
+func (b *BST) RemoveMax() *node {
+	e := b.Max()
+	b.removeMax(b.root)
+	return e
+}
+
+func (b *BST) removeMax(n *node) *node {
+	if n.right == nil {
+		left := n.left
+		n.left = nil
+		b.size--
+		return left
+	}
+	n.right = b.removeMax(n.right)
+	return n
+}
+
+// 查询最大值
 func (b *BST) Max() *node {
 	if b.size == 0 {
 		panic("BST is empty!")

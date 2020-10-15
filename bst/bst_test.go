@@ -111,6 +111,10 @@ func TestBST_Min(t *testing.T) {
 	fmt.Println()
 	fmt.Println(bst.Min().e, bst.MinNR().e)
 	fmt.Println(bst.Max().e, bst.MaxNR().e)
+	fmt.Println(bst.RemoveMin().e)
+	fmt.Println(bst.RemoveMax().e)
+	fmt.Println(bst.Min().e, bst.MinNR().e)
+	fmt.Println(bst.Max().e, bst.MaxNR().e)
 }
 
 
