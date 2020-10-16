@@ -117,5 +117,18 @@ func TestBST_Min(t *testing.T) {
 	fmt.Println(bst.Max().e, bst.MaxNR().e)
 }
 
+func TestBST_Remove(t *testing.T) {
+	bst := getData()
+	bst.InOrderNR1(func(n *node) {
+		fmt.Print(n.e, " ")
+	})
+	bst.Remove(myInt(5))
+	fmt.Println()
+	bst.InOrderNR1(func(n *node) {
+		fmt.Print(n.e, " ")
+	})
+
+}
+
 
 

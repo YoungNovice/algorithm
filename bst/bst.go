@@ -39,6 +39,45 @@ func (b *BST) add(n *node, e Comparable) *node {
 	return n
 }
 
+// 删除二分搜索树中的结点
+// Hibbard Deleion
+// 用右子树的最小值替代原位置 或者左子树的最大值
+func (b *BST) Remove(e Comparable) {
+	b.root = b.remove(b.root, e)
+}
+
+func (b *BST) remove(n *node, e Comparable) *node {
+	if n.e.CompareTo(e) > 0 {
+		n.left = b.remove(n.left, e)
+		return n
+	} else if n.e.CompareTo(e) < 0 {
+		n.right = b.remove(n.right, e)
+		return n
+	} else {
+		if n.left == nil {
+			right := n.right
+			n.right = nil
+			b.size--
+			return right
+		}
+		if n.right == nil {
+			left := n.left
+			n.left = nil
+			b.size--
+			return left
+		}
+		// 取右边的最小 or 取左边最大
+		//min := b.min(n.right)
+		//min.right = b.removeMin(n.right)
+		//min.left = n.left
+		//return min
+		max := b.max(n.left)
+		max.left = b.removeMax(n.left)
+		max.right = n.right
+		return max
+	}
+}
+
 func (b *BST) Contains(e Comparable) bool {
 	return b.contains(b.root, e)
 }
