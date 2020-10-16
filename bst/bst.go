@@ -1,16 +1,14 @@
 package bst
 
 import (
+	"algorithm/common"
 	"fmt"
 	"strings"
 )
 
-type Comparable interface {
-	CompareTo(c Comparable) int
-}
 
 type node struct {
-	e Comparable
+	e common.Comparable
 	left, right *node
 }
 
@@ -19,13 +17,17 @@ type BST struct {
 	size int
 }
 
+func (b *BST) Size() int {
+	return b.size
+}
+
 // 向二分搜索树中添加元素
-func (b *BST) Add(e Comparable) {
+func (b *BST) Add(e common.Comparable) {
 	b.root = b.add(b.root, e)
 }
 
 // 递归添加 这个比较难理解 对于相同的值丢弃
-func (b *BST) add(n *node, e Comparable) *node {
+func (b *BST) add(n *node, e common.Comparable) *node {
 	if n == nil {
 		b.size++
 		return &node{e, nil, nil}
@@ -42,11 +44,11 @@ func (b *BST) add(n *node, e Comparable) *node {
 // 删除二分搜索树中的结点
 // Hibbard Deleion
 // 用右子树的最小值替代原位置 或者左子树的最大值
-func (b *BST) Remove(e Comparable) {
+func (b *BST) Remove(e common.Comparable) {
 	b.root = b.remove(b.root, e)
 }
 
-func (b *BST) remove(n *node, e Comparable) *node {
+func (b *BST) remove(n *node, e common.Comparable) *node {
 	if n == nil {
 		return nil
 	}
@@ -81,11 +83,11 @@ func (b *BST) remove(n *node, e Comparable) *node {
 	}
 }
 
-func (b *BST) Contains(e Comparable) bool {
+func (b *BST) Contains(e common.Comparable) bool {
 	return b.contains(b.root, e)
 }
 
-func (b *BST) contains(n *node, e Comparable) bool {
+func (b *BST) contains(n *node, e common.Comparable) bool {
 	if n == nil {
 		return false
 	}

@@ -1,6 +1,7 @@
 package bst
 
 import (
+	"algorithm/common"
 	"fmt"
 	"strconv"
 	"testing"
@@ -23,7 +24,7 @@ func getData() BST {
 	return bst
 }
 
-func (m myInt) CompareTo(c Comparable) int {
+func (m myInt) CompareTo(c common.Comparable) int {
 	if val, ok := c.(myInt); ok {
 		if m > val {
 			return 1
