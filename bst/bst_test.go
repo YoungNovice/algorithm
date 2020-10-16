@@ -122,7 +122,7 @@ func TestBST_Remove(t *testing.T) {
 	bst.InOrderNR1(func(n *node) {
 		fmt.Print(n.e, " ")
 	})
-	bst.Remove(myInt(5))
+	bst.Remove(myInt(100))
 	fmt.Println()
 	bst.InOrderNR1(func(n *node) {
 		fmt.Print(n.e, " ")

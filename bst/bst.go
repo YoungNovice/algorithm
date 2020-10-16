@@ -47,6 +47,9 @@ func (b *BST) Remove(e Comparable) {
 }
 
 func (b *BST) remove(n *node, e Comparable) *node {
+	if n == nil {
+		return nil
+	}
 	if n.e.CompareTo(e) > 0 {
 		n.left = b.remove(n.left, e)
 		return n
